@@ -1,11 +1,6 @@
 import os
-import librosa
 from pydub import AudioSegment
 from pydub.utils import mediainfo
-import soundfile
-import time
-
-start_time = time.time()
 
 DATASETH_PATH = "audio"
 CONVERTED_PATH = "converted"
