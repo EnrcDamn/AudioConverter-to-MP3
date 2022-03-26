@@ -5,8 +5,6 @@ from pydub.utils import mediainfo
 
 ORIGINAL_FOLDER = "."
 CONVERTED_FOLDER = "converted"
-SAMPLE_RATE = 44100
-MAX_BITRATE = 0
 
 def is_audio_file(filename):
     # get file mediatype
@@ -18,7 +16,7 @@ def is_audio_file(filename):
     return False
 
 
-def convert_audio_files(original_folder, converted_folder, sample_rate):
+def convert_audio_files(original_folder, converted_folder):
     # go through all the files in the folder
     for path, _, files in os.walk(original_folder):
         for file in files:
@@ -36,10 +34,11 @@ def convert_audio_files(original_folder, converted_folder, sample_rate):
                     os.path.join(converted_path, new_filename),
                     format="mp3",
                     bitrate=original_bitrate
-                    )
+                )
     print(f"\n===============================")
     print(f"Process completed successfully!")
     print(f"===============================")
 
+
 if __name__ == "__main__":
-    convert_audio_files(ORIGINAL_FOLDER, CONVERTED_FOLDER, SAMPLE_RATE)
+    convert_audio_files(ORIGINAL_FOLDER, CONVERTED_FOLDER)
