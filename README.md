@@ -10,7 +10,7 @@ The script:
 * converts every audio it finds, preserving the original bitrate up to 320kbps;
 * ignores any other file format.
 
-Every subfolder of the original folder path will be recursively recreated in the new `converted` folder.
+Every subfolder of the original path will be recursively recreated in the new `converted` path.
 
 For example, launching the script on top of a `./dir` path:
 ```
@@ -57,7 +57,7 @@ Requirements installation:
 pip install -r requirements.txt
 ```
 
-Now you just need to <u>move your target folder</u> (with any subfolder) in `/path/to/AudioConverter-to-MP3`, and then run the script:
+Now you just need to __move your target folder__ (with any subfolder) in `/path/to/AudioConverter-to-MP3`, and then run the script:
 
 ```
 python convert_to_mp3.py
