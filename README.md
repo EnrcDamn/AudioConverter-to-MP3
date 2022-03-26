@@ -50,6 +50,7 @@ Will result in a new `./converted` path looking like this:
 git clone https://github.com/EnrcDamn/AudioConverter-to-MP3.git
 cd AudioConverter-to-MP3
 ```
+Then you would need to create a new virtual environment and activate it.
 ### Installing requirements:
 ```
 pip install -r requirements.txt
