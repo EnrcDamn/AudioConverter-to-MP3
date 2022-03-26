@@ -1,30 +1,45 @@
 import os
+import mimetypes
 from pydub import AudioSegment
 from pydub.utils import mediainfo
 
-DATASETH_PATH = "audio"
-CONVERTED_PATH = "converted"
+ORIGINAL_FOLDER = "."
+CONVERTED_FOLDER = "converted"
 SAMPLE_RATE = 44100
 MAX_BITRATE = 0
 
+def is_audio_file(filename):
+    # get file mediatype
+    mediatype = mimetypes.guess_type(filename)[0]
+    if mediatype != None:
+        mediatype = mediatype.split('/')[0]
+        if mediatype == 'audio':
+            return True
+    return False
 
-def convert_audio_files(dataset_path, converted_path, sample_rate):
 
-    # go through all the files in the dataset
-    for path, subdirs, files in os.walk(dataset_path):
+def convert_audio_files(original_folder, converted_folder, sample_rate):
+    # go through all the files in the folder
+    for path, _, files in os.walk(original_folder):
         for file in files:
-            if file[-3:] == "mp3":
+            if is_audio_file(file):
+                # extract filenames and media infos from the original files and rename output files
+                original_filename = os.path.join(path, file)
+                original_bitrate = mediainfo(original_filename)['bit_rate']
+                new_filename = os.path.splitext(os.path.basename(original_filename))[0] + ".mp3"
+                converted_path = os.path.join(converted_folder, path)
+                os.makedirs(converted_path, exist_ok=True)
 
-                # extract filenames from mp3 and rename output path/files
-                original_file = os.path.join(path, file)
-                original_bitrate = mediainfo(original_file)['bit_rate']
-                new_filename = os.path.splitext(os.path.basename(original_file))[0] + ".mp3"
-
-                # write wav files
-                converted_audio = AudioSegment.from_file(original_file)
-                if not os.path.exists(converted_path):
-                    os.makedirs(converted_path)
-                converted_audio.export(os.path.join(converted_path, new_filename), format="mp3", bitrate=original_bitrate)
+                # write output mp3 files
+                converted_audio = AudioSegment.from_file(original_filename)
+                converted_audio.export(
+                    os.path.join(converted_path, new_filename),
+                    format="mp3",
+                    bitrate=original_bitrate
+                    )
+    print(f"\n===============================")
+    print(f"Process completed successfully!")
+    print(f"===============================")
 
 if __name__ == "__main__":
-    convert_audio_files(DATASETH_PATH, CONVERTED_PATH, SAMPLE_RATE)
+    convert_audio_files(ORIGINAL_FOLDER, CONVERTED_FOLDER, SAMPLE_RATE)
