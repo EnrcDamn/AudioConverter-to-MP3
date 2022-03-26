@@ -44,14 +44,15 @@ Will result in a new `./converted` path looking like this:
 * Python 3
 * pydub==0.25.1
 
-### Cloning the repo:
+Clone the repository and navigate to the script folder:
 
 ```
 git clone https://github.com/EnrcDamn/AudioConverter-to-MP3.git
 cd AudioConverter-to-MP3
 ```
 Then you would need to create a new virtual environment and activate it.
-### Installing requirements:
+
+Requirements installation:
 ```
 pip install -r requirements.txt
 ```
