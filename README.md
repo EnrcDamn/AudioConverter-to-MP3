@@ -57,7 +57,7 @@ Requirements installation:
 pip install -r requirements.txt
 ```
 
-Now you just need to <u>move your target folder</u> (with any subfolder) in `path/to/AudioConverter-to-MP3`, and then run the script:
+Now you just need to <u>move your target folder</u> (with any subfolder) in `/path/to/AudioConverter-to-MP3`, and then run the script:
 
 ```
 python convert_to_mp3.py
