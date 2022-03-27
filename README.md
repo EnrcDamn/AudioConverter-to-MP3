@@ -4,6 +4,7 @@ A dummy audio converter to MP3 file format.
 
 I used it to convert my lossless albums, in order to put them into my old and dusty MP3 player.
 
+## Content
 The script:
 * walks through your target path folders;
 * creates a new `converted` path;
